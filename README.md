@@ -1,14 +1,14 @@
 # ENME 351 Lab 6: Digital to Analog Conversion & Servo Motors
 
-**University:** [Your University Name]  
+**University:** University of Maryland, College Park
 **Course:** ENME 351 - Electronics & Instrumentation II  
 **Semester:** Spring 2026  
-**Author:** [Your Name]  
-**Date:** [Current Date]
+**Author:** Yahya Mouamil  
+**Date:** 4/10/2026
 
 ---
 
-## 📋 Overview
+## Overview
 
 This lab demonstrates two methods of controlling a servo motor using an Arduino Uno:
 1. **Analog Control** using a potentiometer
@@ -18,7 +18,7 @@ The lab also includes theoretical analysis, simulation, and physical constructio
 
 ---
 
-## 🧪 Lab Objectives
+## Lab Objectives
 
 - Generate manual PWM signals (no `Servo.h` library) to control an SG92R servo
 - Control servo position using a potentiometer input
@@ -29,7 +29,7 @@ The lab also includes theoretical analysis, simulation, and physical constructio
 
 ---
 
-## 🔧 Components Used
+##  Components Used
 
 | Component | Quantity | Specification |
 |-----------|----------|---------------|
