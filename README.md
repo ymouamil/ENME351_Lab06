@@ -2,12 +2,12 @@
 
 ## Overview
 
-This project demonstrates how to control a servo motor using two different methods:
+This project demonstrates how to control a servo motor using two different input methods:
 
-1. A potentiometer (continuous analog control)
-2. A 3-bit R-2R Digital-to-Analog Converter (DAC) (discrete digital control)
+1. A potentiometer for continuous analog control  
+2. A 3-bit R-2R Digital-to-Analog Converter (DAC) for discrete digital control  
 
-The DAC converts digital bit inputs into analog voltage levels. The Arduino reads this voltage using its ADC and maps it to a PWM signal to control the servo position.
+The DAC converts digital bit inputs into analog voltage levels. The Arduino reads this voltage using its analog-to-digital converter (ADC) and maps it into a PWM signal that controls the servo position.
 
 ---
 
@@ -21,11 +21,12 @@ Digital bits → R-2R DAC → Analog voltage → Arduino ADC → PWM → Servo m
 
 For a 3-bit R-2R DAC:
 
-Vout = Vref * (b2/2 + b1/4 + b0/8)
+Vout = Vref × (b2/2 + b1/4 + b0/8)
 
 Where:
-- Vref = 5V
-- b2 = MSB, b0 = LSB
+- Vref = 5V  
+- b2 = Most Significant Bit (MSB)  
+- b0 = Least Significant Bit (LSB)  
 
 The least significant bit (LSB) voltage is:
 
@@ -54,36 +55,38 @@ The DAC was simulated using CircuitLab to verify expected output voltages.
 
 ### Example Simulation Outputs
 
-![DAC Output 001](dac_simulation_001.png)
+![DAC Output 001](docs/images/dac_simulation_001.png)
 
-![DAC Output 100](dac_simulation_100.png)
+![DAC Output 100](docs/images/dac_simulation_100.png)
 
 ---
 
 ## Physical Implementation
 
-The DAC was built using:
+The DAC was constructed on a breadboard using:
 
-- R = 10 kΩ
-- 2R = 20 kΩ
-- Manual switching of bits using 5V (logic 1) and GND (logic 0)
+- R = 10 kΩ  
+- 2R = 20 kΩ  
+- Manual switching of bits using 5V (logic 1) and GND (logic 0)  
 
-The output voltage was measured using the Arduino analog input.
+The output voltage was measured using the Arduino analog input (A0).
 
-### Sources of Error
+---
 
-Small discrepancies between theoretical and measured values are expected due to:
+## Sources of Error
 
-- Resistor tolerances
-- Breadboard wiring resistance
-- ADC quantization
-- Loading effects
+Small differences between theoretical and measured values are expected due to:
+
+- Resistor tolerances  
+- Breadboard wiring resistance  
+- ADC quantization  
+- Loading effects from measurement  
 
 ---
 
 ## Servo Control Using DAC
 
-The DAC output voltage is read by the Arduino (A0) and mapped into a PWM signal that drives the servo motor.
+The DAC output voltage is read by the Arduino and converted into a PWM signal to control the servo motor.
 
 Control pipeline:
 
@@ -93,9 +96,9 @@ Digital → Analog → Digital → PWM → Mechanical motion
 
 ## Observed Behavior
 
-- The servo moves in discrete steps
-- Each DAC input combination produces a unique position
-- Motion is not smooth, unlike potentiometer control
+- The servo moves in discrete steps  
+- Each DAC input combination produces a unique position  
+- Motion is not smooth, unlike potentiometer control  
 
 ---
 
@@ -103,9 +106,9 @@ Digital → Analog → Digital → PWM → Mechanical motion
 
 A 3-bit DAC provides:
 
-2^3 = 8 possible input combinations
+2³ = 8 possible input combinations  
 
-Therefore, the servo can move to **8 discrete positions**
+Therefore, the servo can move to **8 discrete positions**.
 
 ---
 
@@ -116,12 +119,12 @@ Ideally, the servo positions span the full range:
 | Bits | Approx Angle |
 |------|-------------|
 | 000  | ~0°         |
-| 001  | ~26°        |
-| 010  | ~51°        |
-| 011  | ~77°        |
-| 100  | ~103°       |
-| 101  | ~129°       |
-| 110  | ~154°       |
+| 001  | ~25°        |
+| 010  | ~50°        |
+| 011  | ~75°        |
+| 100  | ~100°       |
+| 101  | ~125°       |
+| 110  | ~150°       |
 | 111  | ~180°       |
 
 Actual angles may vary due to servo nonlinearity and calibration.
@@ -141,18 +144,18 @@ Actual angles may vary due to servo nonlinearity and calibration.
 
 To improve resolution and smoothness:
 
-- Increase DAC resolution (4-bit, 8-bit, etc.)
-- Use precision resistors
-- Use a dedicated DAC IC
-- Add buffering (op-amp) to reduce loading
+- Increase DAC resolution (4-bit, 8-bit, etc.)  
+- Use precision resistors  
+- Use a dedicated DAC IC  
+- Add buffering (op-amp) to reduce loading  
 
 ---
 
-## Files
+## Repository Structure
 
-- main.tex — LaTeX lab report
-- dac_simulation_001.png — simulation result for input 001
-- dac_simulation_100.png — simulation result for input 100
+- `README.md` — Project overview  
+- `docs/images/` — Simulation images  
+- `src/` — Arduino code and exercises  
 
 ---
 
