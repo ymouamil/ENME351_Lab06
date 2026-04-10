@@ -44,7 +44,3 @@ The lab also includes theoretical analysis, simulation, and physical constructio
 | Jumper Wires | ~15 | Male-to-male |
 
 ---
-
-## 📊 Exercise 1: Potentiometer → Servo Control
-
-### Wiring Diagram
